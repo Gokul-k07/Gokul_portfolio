@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useTypingEffect } from "@/hooks/useTypingEffect";
 import { getScrollSectionVariants, getStaggerContainer, getStaggerItem } from "@/lib/sectionVariants";
+import GokulGPT from "@/components/GokulGPT";
 
 const TERMINAL_LINES = [
   "> ingest docs -> chunk -> embed -> retrieve",
@@ -162,6 +163,9 @@ export function AISection() {
           </div>
         </motion.div>
       </div>
+
+      {/* GokulGPT Chatbot */}
+      <GokulGPT />
     </section>
   );
 }

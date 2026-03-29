@@ -21,6 +21,19 @@ const dmSans = DM_Sans({
   preload: true,
 });
 
+// Client component to handle HTML element with hydration suppression
+function Html({ children }: { children: React.ReactNode }) {
+  return (
+    <html
+      lang="en"
+      className={`${syne.variable} ${dmSans.variable} dark h-full antialiased`}
+      suppressHydrationWarning
+    >
+      {children}
+    </html>
+  );
+}
+
 const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
@@ -92,12 +105,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${syne.variable} ${dmSans.variable} dark h-full antialiased`}>
+    <Html>
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         <SiteHeader />
         <InteractiveCursor />
         {children}
       </body>
-    </html>
+    </Html>
   );
 }
