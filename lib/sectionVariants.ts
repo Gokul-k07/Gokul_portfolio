@@ -77,3 +77,28 @@ export function getHeroContainer(reduced: boolean | null): Variants {
     },
   };
 }
+
+export function getStackCardVariants(reduced: boolean | null): Variants {
+  if (reduced) {
+    return {
+      hidden: { opacity: 0, y: 100 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.3 },
+      },
+    };
+  }
+  return {
+    hidden: { opacity: 0, y: 100, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    },
+  };
+}

@@ -1,11 +1,12 @@
 "use client";
 
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import type { Project } from "@/data/projects";
 import { featuredProjects } from "@/data/projects";
-import { getScrollSectionVariants } from "@/lib/sectionVariants";
+import { getScrollSectionVariants, getStackCardVariants } from "@/lib/sectionVariants";
 import { IconExternal } from "@/components/icons/SocialIcons";
 
 function ProjectActions({ project }: { project: Project }) {
@@ -44,9 +45,25 @@ function ProjectActions({ project }: { project: Project }) {
   );
 }
 
-function ProjectCard({ project, index, imagePriority = false }: { project: Project; index: number; imagePriority?: boolean }) {
+function ProjectCard({ project, index, imagePriority = false, stackPosition = 0, isTopCard = false }: { project: Project; index: number; imagePriority?: boolean; stackPosition?: number; isTopCard?: boolean }) {
+  // Increase blur for deeper stack positions
+  const blurAmount = isTopCard ? 16 : 20 + Math.min(stackPosition, 4) * 8; // 16, 28, 36, 44, ...
+  const glassClasses = isTopCard
+    ? "glass group overflow-hidden rounded-[2rem] border border-white/12 shadow-[0_24px_80px_-32px_rgba(0,0,0,0.72),0_0_20px_rgba(34,211,238,0.15)]"
+    : "glass group overflow-hidden rounded-[2rem] border border-white/6 shadow-[0_16px_64px_-24px_rgba(0,0,0,0.48)]";
+
+  const backdropBlur = `blur(${blurAmount}px)`;
+  const opacity = isTopCard ? 1 : 0.7;
+
   return (
-    <article className="glass group overflow-hidden rounded-[2rem] border border-white/10 shadow-[0_24px_80px_-32px_rgba(0,0,0,0.72)]">
+    <motion.article
+      className={glassClasses}
+      style={{
+        backdropFilter: backdropBlur,
+        WebkitBackdropFilter: backdropBlur,
+        opacity,
+      }}
+    >
       <div className="grid min-h-[22rem] md:min-h-[calc(100dvh-8.5rem)] lg:grid-cols-[minmax(0,1.12fr)_minmax(20rem,0.88fr)]">
         <div className="relative min-h-[18rem] overflow-hidden bg-[var(--bg-elevated)] lg:min-h-full">
           <Image
@@ -106,16 +123,91 @@ function ProjectCard({ project, index, imagePriority = false }: { project: Proje
           </div>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }
 
 function StackedScroll({ projects }: { projects: Project[] }) {
+  const reduced = useReducedMotion();
+  const cardVariants = getStackCardVariants(reduced);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [topCardIndex, setTopCardIndex] = useState(0);
+
+  // Track scroll progress through the stacking section
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Update top card index when scroll progress changes
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on("change", (progress) => {
+      const segmentSize = 1 / projects.length;
+      setTopCardIndex(Math.min(Math.floor(progress / segmentSize), projects.length - 1));
+    });
+    return unsubscribe;
+  }, [scrollYProgress, projects.length]);
+
+  // Calculate animation progress for each card
+  const getCardProgress = (index: number, totalCards: number) => {
+    // Each card gets activated at different scroll progress points
+    const segmentSize = 1 / totalCards;
+    const startProgress = index * segmentSize;
+    const endProgress = (index + 1) * segmentSize;
+
+    return useTransform(scrollYProgress, [startProgress, endProgress], [0, 1]);
+  };
+
+  const getCardY = (index: number, totalCards: number) => {
+    const progress = getCardProgress(index, totalCards);
+
+    // Card starts from bottom of viewport, moves to center, then stays in stack
+    return useTransform(progress, [0, 0.5, 1], ["100vh", "0vh", `${-index * 60}px`]);
+  };
+
+  const getCardOpacity = (index: number, totalCards: number) => {
+    const progress = getCardProgress(index, totalCards);
+    return useTransform(progress, [0, 0.2, 1], [0, 1, 1]);
+  };
+
+  const getCardScale = (index: number, totalCards: number) => {
+    const progress = getCardProgress(index, totalCards);
+    return useTransform(progress, [0, 0.3, 0.7, 1], [0.8, 1, 1, 0.95]);
+  };
+
   return (
-    <div className="flex flex-col gap-5 md:gap-6">
-      {projects.map((project, index) => (
-        <ProjectCard key={project.slug} project={project} index={index} imagePriority={index === 0} />
-      ))}
+    <div
+      ref={containerRef}
+      className="relative"
+      style={{ height: `${projects.length * 100}vh` }}
+    >
+      <div className="sticky top-1/2 flex items-center justify-center" style={{ transform: 'translateY(-50%)' }}>
+        {projects.map((project, index) => {
+          const y = getCardY(index, projects.length);
+          const opacity = getCardOpacity(index, projects.length);
+          const scale = getCardScale(index, projects.length);
+          return (
+            <motion.div
+              key={project.slug}
+              className="absolute inset-0 flex items-center justify-center"
+              style={{
+                y,
+                opacity,
+                scale,
+                zIndex: index + 1,
+              }}
+            >
+              <ProjectCard
+                project={project}
+                index={index}
+                imagePriority={index === 0}
+                stackPosition={index}
+                isTopCard={topCardIndex === index}
+              />
+            </motion.div>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -144,6 +236,8 @@ export function FeaturedProjects() {
         </motion.div>
 
         <StackedScroll projects={projects} />
+        {/* Spacer to separate from AI section */}
+        <div className="h-40 md:h-64" />
       </div>
     </section>
   );

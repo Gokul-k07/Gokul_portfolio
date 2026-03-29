@@ -3,15 +3,45 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { profile } from "@/data/profile";
 import { getScrollSectionVariants } from "@/lib/sectionVariants";
+import { useEffect, useRef } from "react";
 
 export function Intro() {
   const reduced = useReducedMotion();
   const variants = getScrollSectionVariants(reduced);
+  const splineContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (splineContainerRef.current && !splineContainerRef.current.hasChildNodes()) {
+      // Load the Spline viewer script
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.src = 'https://unpkg.com/@splinetool/viewer@1.12.73/build/spline-viewer.js';
+      document.head.appendChild(script);
+
+      // Create the spline-viewer element
+      const splineViewer = document.createElement('spline-viewer');
+      splineViewer.setAttribute('url', 'https://prod.spline.design/ky8GD6Q5UD5S8qY9/scene.splinecode');
+      splineViewer.style.width = '900px';
+      splineViewer.style.height = '440px';
+      splineViewer.style.marginLeft = '-100px';
+      splineViewer.style.marginRight = '0px';
+      splineViewer.style.minWidth = '';
+      splineViewer.style.position = 'relative';
+      splineViewer.style.left = '-100px';
+
+      splineContainerRef.current.appendChild(splineViewer);
+    }
+  }, []);
 
   return (
     <section id="intro" className="relative px-6 py-20 md:py-28">
-      <div className="mx-auto max-w-3xl">
-        <motion.div variants={variants} initial={false} whileInView="visible" viewport={{ once: true, amount: 0.35 }}>
+      <div className="mx-auto max-w-4xl flex flex-col gap-10 md:flex-row md:items-start md:gap-16">
+        {/* 3D Robot Spline Embed */}
+        <div className="w-full max-w-xs md:w-1/2 md:max-w-sm flex-shrink-0 md:self-start md:justify-start md:flex md:items-start md:pl-0" style={{marginLeft: -100}}>
+          <div className="rounded-2xl overflow-hidden bg-black/30 shadow-lg" ref={splineContainerRef} style={{marginLeft: -100, marginRight: 0}}/>
+        </div>
+        {/* Intro Text */}
+        <motion.div variants={variants} initial={false} whileInView="visible" viewport={{ once: true, amount: 0.35 }} className="flex-1">
           <h2 className="font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">
             Hi, I&apos;m {profile.name} &mdash; {profile.role}
           </h2>
