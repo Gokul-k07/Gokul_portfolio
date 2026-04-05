@@ -64,8 +64,19 @@ export function InteractiveCursor() {
     if (!home || reduced || !finePointer) return;
     const prev = document.body.style.cursor;
     document.body.style.cursor = "none";
+    
+    // Hide cursor on interactive elements
+    const style = document.createElement('style');
+    style.id = 'interactive-cursor-hide';
+    style.textContent = `
+      button, a, input, select, textarea, label { cursor: none !important; }
+      button:hover, a:hover, input:hover, select:hover, textarea:hover { cursor: none !important; }
+    `;
+    document.head.appendChild(style);
+    
     return () => {
       document.body.style.cursor = prev;
+      style.remove();
     };
   }, [home, reduced, finePointer]);
 

@@ -49,20 +49,13 @@ export function SiteHeader() {
                 key={l.href}
                 href={l.href}
                 scroll={true}
-                className={`nav-link relative shrink-0 text-xs font-medium transition-colors sm:text-sm ${
+                className={`nav-link relative shrink-0 rounded-full px-3 py-1.5 text-xs font-medium transition-all sm:text-sm sm:px-4 sm:py-2 ${
                   active
-                    ? "text-[var(--accent-cyan)]"
-                    : "text-muted hover:text-[var(--accent-cyan)]/90"
-                }`}
+                    ? "bg-[var(--accent-cyan)]/10 text-[var(--accent-cyan)] border border-[var(--accent-cyan)]/30"
+                    : "text-muted hover:text-foreground hover:bg-white/5 hover:border border-white/10"
+                } border border-transparent`}
               >
                 {l.label}
-                {active ? (
-                  <motion.span
-                    layoutId="nav-pill"
-                    className="absolute -bottom-1 left-0 right-0 mx-auto h-0.5 max-w-[1.75rem] rounded-full bg-[var(--accent-cyan)] shadow-[0_0_12px_rgba(34,211,238,0.5)]"
-                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                  />
-                ) : null}
               </Link>
             );
           })}
