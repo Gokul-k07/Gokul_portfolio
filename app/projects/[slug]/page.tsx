@@ -116,7 +116,7 @@ export default async function ProjectCaseStudyPage({ params }: Props) {
         </section>
 
         <section className="mt-14">
-          <h2 className="font-display text-xl font-semibold text-foreground">Tech stack</h2>
+          <h2 className="font-display text-xl font-semibold text-foreground">Tech Arsenal</h2>
           <ul className="mt-4 flex flex-wrap gap-2">
             {project.techStack.map((item) => (
               <li

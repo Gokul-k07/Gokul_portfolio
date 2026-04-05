@@ -1,13 +1,9 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { profile } from "@/data/profile";
-import { getScrollSectionVariants } from "@/lib/sectionVariants";
 import { useEffect, useRef } from "react";
+import { profile } from "@/data/profile";
 
 export function Intro() {
-  const reduced = useReducedMotion();
-  const variants = getScrollSectionVariants(reduced);
   const splineContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -37,22 +33,25 @@ export function Intro() {
     <section id="intro" className="relative px-6 py-20 md:py-28">
       <div className="mx-auto max-w-4xl flex flex-col gap-10 md:flex-row md:items-start md:gap-16">
         {/* 3D Robot Spline Embed */}
-        <div className="w-full max-w-xs md:w-1/2 md:max-w-sm flex-shrink-0 md:self-start md:justify-start md:flex md:items-start md:pl-0" style={{marginLeft: -100}}>
-          <div className="rounded-2xl overflow-hidden bg-black/30 shadow-lg" ref={splineContainerRef} style={{marginLeft: -100, marginRight: 0}}/>
+        <div
+          className="w-full max-w-xs md:w-1/2 md:max-w-sm flex-shrink-0 md:self-start md:justify-start md:flex md:items-start md:pl-0 animate-load delay-0"
+          style={{ marginLeft: -100 }}
+        >
+          <div className="rounded-2xl overflow-hidden bg-black/30 shadow-lg" ref={splineContainerRef} style={{ marginLeft: -100, marginRight: 0 }} />
         </div>
         {/* Intro Text */}
-        <motion.div variants={variants} initial={false} whileInView="visible" viewport={{ once: true, amount: 0.35 }} className="flex-1">
-          <h2 className="font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+        <div className="flex-1">
+          <h2 className="font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl animate-load delay-1">
             Hi, I&apos;m {profile.name} &mdash; {profile.role}
           </h2>
-          <p className="mt-6 text-lg leading-relaxed text-muted md:text-xl">
+          <p className="mt-6 text-lg leading-relaxed text-muted md:text-xl animate-load delay-2">
             I&apos;m based in <strong className="font-semibold text-foreground">{profile.location}</strong>. I
             build interfaces, APIs, data flows, and AI-assisted workflows end to end. The strongest signal in
             my work is not just visual polish&mdash;it is product judgment: solving coordination, automation,
             and security problems with software people will actually use. I work fast, communicate clearly,
             and care about code that can hold up in production.
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

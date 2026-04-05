@@ -317,3 +317,84 @@ section[id] {
 .scrollbar-thumb-white\/10::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+
+/* Tech Stack Animations */
+.tech-stack {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+}
+
+.tech-track {
+  display: inline-flex;
+  width: max-content;
+  height: 50px;
+}
+
+/* Page Load Animations - Smooth Transitions */
+/* Initial hidden state - elements start invisible */
+.animate-load {
+  opacity: 0;
+  transform: translateY(40px) translateX(10px);
+}
+
+/* Active animation state - triggered after page loads */
+.animate-load.visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Stagger delays - each element animates in sequence */
+.animate-load.delay-0.visible { transition-delay: 0s; }
+.animate-load.delay-1.visible { transition-delay: 0.1s; }
+.animate-load.delay-2.visible { transition-delay: 0.2s; }
+.animate-load.delay-3.visible { transition-delay: 0.3s; }
+.animate-load.delay-4.visible { transition-delay: 0.4s; }
+.animate-load.delay-5.visible { transition-delay: 0.5s; }
+.animate-load.delay-6.visible { transition-delay: 0.6s; }
+.animate-load.delay-7.visible { transition-delay: 0.7s; }
+.animate-load.delay-8.visible { transition-delay: 0.8s; }
+
+/* Fallback fade-up animation for legacy elements */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Base fade-up state */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* Apply animation on page load */
+.loaded .fade-up {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+/* Stagger delays */
+.fade-up.delay-0 { animation-delay: 0s; }
+.fade-up.delay-1 { animation-delay: 0.1s; }
+.fade-up.delay-2 { animation-delay: 0.2s; }
+.fade-up.delay-3 { animation-delay: 0.3s; }
+.fade-up.delay-4 { animation-delay: 0.4s; }
+.fade-up.delay-5 { animation-delay: 0.5s; }
+.fade-up.delay-6 { animation-delay: 0.6s; }
+.fade-up.delay-7 { animation-delay: 0.7s; }
+.fade-up.delay-8 { animation-delay: 0.8s; }
+
+/* Alternative nth-child based delays */
+.fade-up:nth-child(1) { animation-delay: 0.1s; }
+.fade-up:nth-child(2) { animation-delay: 0.2s; }
+.fade-up:nth-child(3) { animation-delay: 0.3s; }
+.fade-up:nth-child(4) { animation-delay: 0.4s; }
+.fade-up:nth-child(5) { animation-delay: 0.5s; }

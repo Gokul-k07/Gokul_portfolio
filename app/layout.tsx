@@ -106,10 +106,81 @@ export default function RootLayout({
 }>) {
   return (
     <Html>
-      <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
+      <body className="flex min-h-full flex-col bg-background font-sans text-foreground" suppressHydrationWarning>
         <SiteHeader />
         <InteractiveCursor />
         {children}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                // Smooth inertia scroll
+                let targetScroll = 0;
+                let currentScroll = 0;
+                let velocity = 0;
+                let lastScroll = 0;
+                let scrollTimeout;
+                let isUserScrolling = false;
+                
+                const handleScroll = () => {
+                  targetScroll = window.scrollY;
+                  isUserScrolling = true;
+                  clearTimeout(scrollTimeout);
+                  
+                  const delta = window.scrollY - lastScroll;
+                  velocity = delta * 0.8;
+                  lastScroll = window.scrollY;
+                  
+                  scrollTimeout = setTimeout(() => {
+                    isUserScrolling = false;
+                  }, 150);
+                };
+                
+                const applyInertia = () => {
+                  if (Math.abs(velocity) > 0.2 && !isUserScrolling) {
+                    velocity *= 0.92;
+                    targetScroll += velocity;
+                    
+                    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                    targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+                    
+                    window.scrollTo(0, targetScroll);
+                  }
+                  
+                  if (Math.abs(velocity) > 0.2) {
+                    requestAnimationFrame(applyInertia);
+                  }
+                };
+                
+                window.addEventListener('scroll', handleScroll, { passive: true });
+                window.addEventListener('scroll', () => {
+                  if (!isUserScrolling && Math.abs(velocity) > 0.2) {
+                    requestAnimationFrame(applyInertia);
+                  }
+                }, { passive: true });
+                
+                // Page load animations - trigger after paint
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', () => {
+                    requestAnimationFrame(() => {
+                      const elements = document.querySelectorAll('.animate-load');
+                      elements.forEach((el) => {
+                        el.classList.add('visible');
+                      });
+                    });
+                  });
+                } else {
+                  requestAnimationFrame(() => {
+                    const elements = document.querySelectorAll('.animate-load');
+                    elements.forEach((el) => {
+                      el.classList.add('visible');
+                    });
+                  });
+                }
+              })();
+            `,
+          }}
+        />
       </body>
     </Html>
   );
