@@ -3,7 +3,7 @@ import { getAllProjectSlugs } from "@/data/projects";
 import { getSiteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = getSiteUrl();
+  const base = "https://gokulk.vercel.app/"; //getSiteUrl();
   const lastModified = new Date();
 
   const projectUrls = getAllProjectSlugs().map((slug) => ({

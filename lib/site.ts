@@ -1,10 +1,10 @@
-/** Canonical site URL for metadata, OG, and sitemap. Set NEXT_PUBLIC_SITE_URL in production. */
+/** Canonical site URL for metadata, OG, and sitemap.
+ *  Priority: NEXT_PUBLIC_SITE_URL env var → hardcoded production URL → localhost
+ *  NOTE: Do NOT use VERCEL_URL — it resolves to the deployment preview URL, not production.
+ */
 export function getSiteUrl(): string {
   if (process.env.NEXT_PUBLIC_SITE_URL) {
     return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
   }
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL.replace(/\/$/, "")}`;
-  }
-  return "http://localhost:3000";
+  return "https://gokulk.vercel.app";
 }
