@@ -68,7 +68,7 @@ function ProjectCard({ project, index, imagePriority = false, stackPosition = 0,
         <div className="relative min-h-[18rem] overflow-hidden bg-[var(--bg-elevated)] lg:min-h-full">
           <Image
             src={project.thumbnailSrc}
-            alt={`${project.title} preview`}
+            alt={`${project.title} — project by Gokul K, Full Stack Developer`}
             fill
             className="object-cover object-top transition duration-700 group-hover:scale-[1.02]"
             sizes="(max-width: 1024px) 100vw, 58vw"
@@ -204,7 +204,7 @@ export function FeaturedProjects() {
   const projects = featuredProjects;
 
   return (
-    <section id="work" className="relative px-4 py-16 sm:px-6 md:py-24">
+    <section id="work" aria-labelledby="work-heading" className="relative px-4 py-16 sm:px-6 md:py-24">
       <div className="mx-auto max-w-6xl">
         <motion.div
           variants={sectionVariants}
@@ -216,8 +216,8 @@ export function FeaturedProjects() {
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--accent-violet)]">
             Featured work
           </p>
-          <h2 className="font-display mt-3 text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
-            Proof of product thinking, systems depth, and execution
+          <h2 id="work-heading" className="font-display mt-3 text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
+            Featured Work by Gokul K
           </h2>
         </motion.div>
 

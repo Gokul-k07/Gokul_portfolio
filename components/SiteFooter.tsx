@@ -60,7 +60,7 @@ export function SiteFooter() {
   };
 
   return (
-    <footer id="contact" className="relative border-t border-white/10 px-6 py-16 md:py-20">
+    <footer id="contact" aria-labelledby="contact-heading" className="relative border-t border-white/10 px-6 py-16 md:py-20">
       <div className="mx-auto max-w-6xl">
         <motion.div
           variants={variants}
@@ -69,7 +69,7 @@ export function SiteFooter() {
           viewport={{ once: true, amount: 0.4 }}
           className="text-center"
         >
-          <h2 className="font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+          <h2 id="contact-heading" className="font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">
             Let&apos;s build something worth shipping
           </h2>
           <p className="mt-3 text-muted">
@@ -101,7 +101,7 @@ export function SiteFooter() {
                   Connect
                 </p>
                 <div className="flex flex-col gap-3">
-                  <a href={profile.email} className={linkClass}>
+                  <a href={profile.email} className={linkClass} aria-label={`Email ${profile.name}`}>
                     <IconMail className="h-5 w-5 shrink-0" />
                     Email
                   </a>
@@ -110,6 +110,7 @@ export function SiteFooter() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={linkClass}
+                    aria-label={`${profile.name} on LinkedIn`}
                   >
                     <IconLinkedIn className="h-5 w-5 shrink-0" />
                     LinkedIn
@@ -119,6 +120,7 @@ export function SiteFooter() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={linkClass}
+                    aria-label={`${profile.name} on GitHub`}
                   >
                     <IconGithub className="h-5 w-5 shrink-0" />
                     GitHub

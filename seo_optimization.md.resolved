@@ -1,0 +1,496 @@
+# SEO Optimization — gokulk.vercel.app
+
+## 1. OPTIMIZED `<head>` SECTION
+
+For a **Next.js** project, add this to your `app/layout.tsx` (App Router) or `pages/_document.tsx` (Pages Router).
+
+---
+
+### Option A — Next.js App Router (`app/layout.tsx`)
+
+```tsx
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://gokulk.vercel.app"),
+  title: "Gokul K — Full Stack Developer & AI Engineer | Tamil Nadu, India",
+  description:
+    "Gokul K is a Full Stack Web Developer and AI Engineer based in Tamil Nadu, India. Specializing in React, Next.js, Supabase, Firebase, and AI-powered web apps. View Gokul's portfolio, projects, and case studies.",
+  keywords: [
+    "Gokul",
+    "Gokulk",
+    "Gokul K",
+    "Gokul portfolio",
+    "Gokul K web developer",
+    "Gokul K full stack developer",
+    "Gokul K AI engineer",
+    "Gokul Tamil Nadu developer",
+    "gokulk.vercel.app",
+    "React developer India",
+    "Next.js developer",
+    "full stack developer portfolio",
+  ],
+  authors: [{ name: "Gokul K", url: "https://gokulk.vercel.app" }],
+  creator: "Gokul K",
+  publisher: "Gokul K",
+  alternates: {
+    canonical: "https://gokulk.vercel.app",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://gokulk.vercel.app",
+    title: "Gokul K — Full Stack Developer & AI Engineer",
+    description:
+      "Gokul K builds production-ready web apps, backend systems, and AI-powered experiences. Based in Tamil Nadu, India.",
+    siteName: "Gokul K Portfolio",
+    images: [
+      {
+        url: "https://gokulk.vercel.app/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Gokul K — Full Stack Developer & AI Engineer",
+      },
+    ],
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Gokul K — Full Stack Developer & AI Engineer",
+    description:
+      "Gokul K builds production-ready web apps, backend systems, and AI-powered experiences. Based in Tamil Nadu, India.",
+    images: ["https://gokulk.vercel.app/og-image.png"],
+    creator: "@gokulk",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+```
+
+---
+
+### Option B — Plain HTML `<head>` (static site)
+
+```html
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary SEO -->
+  <title>Gokul K — Full Stack Developer &amp; AI Engineer | Tamil Nadu, India</title>
+  <meta name="description" content="Gokul K is a Full Stack Web Developer and AI Engineer based in Tamil Nadu, India. Specializing in React, Next.js, Supabase, Firebase, and AI-powered web apps. View Gokul's portfolio, projects, and case studies." />
+  <meta name="keywords" content="Gokul, Gokulk, Gokul K, Gokul portfolio, Gokul K web developer, Gokul K full stack developer, Gokul K AI engineer, gokulk.vercel.app, React developer India" />
+  <meta name="author" content="Gokul K" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://gokulk.vercel.app" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gokulk.vercel.app" />
+  <meta property="og:site_name" content="Gokul K Portfolio" />
+  <meta property="og:title" content="Gokul K — Full Stack Developer &amp; AI Engineer" />
+  <meta property="og:description" content="Gokul K builds production-ready web apps, backend systems, and AI-powered experiences. Based in Tamil Nadu, India." />
+  <meta property="og:image" content="https://gokulk.vercel.app/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Gokul K — Full Stack Developer &amp; AI Engineer" />
+  <meta property="og:locale" content="en_IN" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Gokul K — Full Stack Developer &amp; AI Engineer" />
+  <meta name="twitter:description" content="Gokul K builds production-ready web apps, backend systems, and AI-powered experiences. Based in Tamil Nadu, India." />
+  <meta name="twitter:image" content="https://gokulk.vercel.app/og-image.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+</head>
+```
+
+---
+
+## 2. JSON-LD STRUCTURED DATA (Person Schema)
+
+Add this as a `<script>` tag just before `</body>`, or in Next.js as a component using `next/script`.
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Gokul K",
+  "alternateName": ["Gokul", "Gokulk"],
+  "url": "https://gokulk.vercel.app",
+  "image": "https://gokulk.vercel.app/og-image.png",
+  "jobTitle": "Full Stack Developer",
+  "description": "Gokul K is a Full Stack Web Developer and AI Engineer based in Tamil Nadu, India, specializing in React, Next.js, Supabase, Firebase, and AI-powered web applications.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "Tamil Nadu",
+    "addressCountry": "IN"
+  },
+  "email": "mailto:gokulk24cb@psnacet.edu.in",
+  "knowsAbout": [
+    "React",
+    "Next.js",
+    "Full Stack Development",
+    "Artificial Intelligence",
+    "Supabase",
+    "Firebase",
+    "Kotlin",
+    "Android Development",
+    "TypeScript",
+    "Web Development"
+  ],
+  "sameAs": [
+    "https://github.com/Gokul-k07",
+    "https://www.linkedin.com/in/gokul-k-23334b329/"
+  ]
+}
+</script>
+```
+
+### For Next.js App Router — create `app/components/JsonLd.tsx`:
+
+```tsx
+export default function JsonLd() {
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Gokul K",
+          alternateName: ["Gokul", "Gokulk"],
+          url: "https://gokulk.vercel.app",
+          image: "https://gokulk.vercel.app/og-image.png",
+          jobTitle: "Full Stack Developer",
+          description:
+            "Gokul K is a Full Stack Web Developer and AI Engineer based in Tamil Nadu, India, specializing in React, Next.js, Supabase, Firebase, and AI-powered web applications.",
+          address: {
+            "@type": "PostalAddress",
+            addressRegion: "Tamil Nadu",
+            addressCountry: "IN",
+          },
+          email: "mailto:gokulk24cb@psnacet.edu.in",
+          knowsAbout: [
+            "React",
+            "Next.js",
+            "Full Stack Development",
+            "Artificial Intelligence",
+            "Supabase",
+            "Firebase",
+            "Kotlin",
+            "Android Development",
+            "TypeScript",
+            "Web Development",
+          ],
+          sameAs: [
+            "https://github.com/Gokul-k07",
+            "https://www.linkedin.com/in/gokul-k-23334b329/",
+          ],
+        }),
+      }}
+    />
+  );
+}
+```
+
+Then import it in `app/layout.tsx`:
+```tsx
+import JsonLd from "@/components/JsonLd";
+// ...
+<body>
+  <JsonLd />
+  {children}
+</body>
+```
+
+---
+
+## 3. HOMEPAGE HERO SECTION (SEO-Optimized HTML)
+
+Replace your current hero/intro section with this semantically correct structure.
+
+```html
+<body>
+  <header role="banner">
+    <nav aria-label="Primary navigation">
+      <a href="/" aria-label="Gokul K — Home">Gokul K</a>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#intro">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#ai">AI</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="cta-btn">Let's talk</a>
+    </nav>
+  </header>
+
+  <main id="main-content" role="main">
+
+    <!-- HERO SECTION -->
+    <section id="hero" aria-labelledby="hero-heading">
+      <p class="location-tag">
+        <span aria-hidden="true">📍</span> Gokul K — Tamil Nadu, India
+      </p>
+
+      <!-- ONE AND ONLY H1 ON THE PAGE -->
+      <h1 id="hero-heading">
+        Gokul K — Full Stack Developer &amp; AI Engineer
+      </h1>
+
+      <p class="hero-sub">
+        I build production-ready web apps, backend systems, and AI-enabled
+        experiences that are fast, clear, and easy to trust in the hands of real users.
+      </p>
+
+      <ul class="tech-stack" aria-label="Core technologies">
+        <li>React + Next.js</li>
+        <li>AI product workflows</li>
+        <li>Supabase + Firebase</li>
+        <li>Kotlin + Android</li>
+      </ul>
+
+      <div class="hero-actions">
+        <a href="#work" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-secondary">Let's Talk</a>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="intro" aria-labelledby="intro-heading">
+      <h2 id="intro-heading">Hi, I'm Gokul K — Web Developer &amp; AI Enthusiast</h2>
+      <p>
+        Based in Tamil Nadu, India, Gokul K builds interfaces, APIs, data flows,
+        and AI-assisted workflows end to end. My work is defined not just by visual
+        polish but by product judgment — solving coordination, automation, and
+        security problems with software people will actually use.
+        I work fast, communicate clearly, and care about code that holds up in production.
+      </p>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="work" aria-labelledby="work-heading">
+      <h2 id="work-heading">Featured Work by Gokul K</h2>
+      <p class="section-sub">Proof of product thinking, systems depth, and execution</p>
+
+      <article aria-labelledby="project-nextstop">
+        <h3 id="project-nextstop">NEXTSTOP — BusTracker</h3>
+        <p>Real-time college bus tracking with driver broadcasts, OTP-gated location sharing, and an AI route assistant.</p>
+        <ul>
+          <li>Live map views with route-aware stop progress</li>
+          <li>Separate driver and passenger workflows with OTP-gated sharing</li>
+          <li>Supabase-backed auth, trip management, and AI route Q&amp;A</li>
+        </ul>
+        <ul class="tech-tags" aria-label="Technologies used">
+          <li>React</li><li>TypeScript</li><li>Tailwind</li>
+          <li>Supabase</li><li>Maps</li><li>AI</li>
+        </ul>
+        <a href="/projects/nextstop-bustracker">Case study →</a>
+        <a href="https://nextstop-six.vercel.app" rel="noopener noreferrer" target="_blank">Live demo</a>
+        <a href="https://github.com/Gokul-k07/Bustrackermobileappdesign" rel="noopener noreferrer" target="_blank">GitHub</a>
+      </article>
+
+      <article aria-labelledby="project-resume">
+        <h3 id="project-resume">AI Resume Maker &amp; Analyzer</h3>
+        <p>Upload a resume, get structured scoring and AI feedback, and iterate faster for hiring prep.</p>
+        <ul>
+          <li>Document parsing and role-aware scoring pipeline</li>
+          <li>LLM-generated feedback surfaced in a simple product flow</li>
+          <li>Built to shorten manual review and candidate prep cycles</li>
+        </ul>
+        <ul class="tech-tags" aria-label="Technologies used">
+          <li>OpenAI API</li><li>Python</li><li>Web</li><li>AI</li>
+        </ul>
+        <a href="/projects/ai-resume-analyzer">Case study →</a>
+        <a href="https://ai-resume-maker-63dcf.web.app" rel="noopener noreferrer" target="_blank">Live demo</a>
+        <a href="https://github.com/Gokul-k07" rel="noopener noreferrer" target="_blank">GitHub</a>
+      </article>
+
+      <article aria-labelledby="project-securepower">
+        <h3 id="project-securepower">SecurePower</h3>
+        <p>Anti-theft Android security — block unauthorized shutdowns with PIN/password, alerts, tracking, and a fake power-off screen.</p>
+        <ul>
+          <li>Accessibility-driven shutdown interception on Android</li>
+          <li>Realtime alerts across FCM, email, and SMS</li>
+          <li>Location tracking, SIM-change detection, and fake power-off UI</li>
+        </ul>
+        <ul class="tech-tags" aria-label="Technologies used">
+          <li>Kotlin</li><li>Jetpack Compose</li><li>Firebase</li><li>Android</li>
+        </ul>
+        <a href="/projects/securepower">Case study →</a>
+        <a href="https://securepower.netlify.app" rel="noopener noreferrer" target="_blank">Live demo</a>
+        <a href="https://github.com/Gokul-k07/newwindow" rel="noopener noreferrer" target="_blank">GitHub</a>
+      </article>
+    </section>
+
+    <!-- AI SECTION -->
+    <section id="ai" aria-labelledby="ai-heading">
+      <h2 id="ai-heading">AI Systems by Gokul K</h2>
+      <p>
+        LLM features, document pipelines, and workflow automation that feel native—not bolted on.
+        Clear boundaries, observability, and UX that earns trust.
+      </p>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Let's Build Something Worth Shipping</h2>
+      <p>
+        Open to full-time roles and contract work. Tell me about your stack,
+        timeline, and goals — I'll respond with clarity on fit and next steps.
+      </p>
+
+      <address>
+        <strong>Gokul K</strong> — Full Stack Developer / AI Enthusiast<br />
+        Tamil Nadu, India<br />
+        <a href="mailto:gokulk24cb@psnacet.edu.in" aria-label="Email Gokul K">gokulk24cb@psnacet.edu.in</a><br />
+        <a href="https://www.linkedin.com/in/gokul-k-23334b329/" rel="noopener noreferrer" target="_blank" aria-label="Gokul K on LinkedIn">LinkedIn</a>
+        <a href="https://github.com/Gokul-k07" rel="noopener noreferrer" target="_blank" aria-label="Gokul K on GitHub">GitHub</a>
+      </address>
+    </section>
+
+  </main>
+
+  <footer role="contentinfo">
+    <p>&copy; 2026 Gokul K. All rights reserved.</p>
+  </footer>
+</body>
+```
+
+---
+
+## 4. IMAGE ALT TEXT RULES
+
+Every `<img>` tag must follow this pattern:
+
+```html
+<!-- Profile photo -->
+<img src="/gokul-k-profile.jpg" alt="Gokul K — Full Stack Developer based in Tamil Nadu, India" width="400" height="400" loading="lazy" />
+
+<!-- Project screenshots -->
+<img src="/projects/nextstop-screenshot.png" alt="NEXTSTOP BusTracker project by Gokul K — real-time college bus tracking app" width="800" height="450" loading="lazy" />
+
+<img src="/projects/ai-resume-screenshot.png" alt="AI Resume Maker and Analyzer built by Gokul K — AI-powered resume scoring app" width="800" height="450" loading="lazy" />
+
+<img src="/projects/securepower-screenshot.png" alt="SecurePower Android anti-theft app by Gokul K — Kotlin and Firebase security app" width="800" height="450" loading="lazy" />
+```
+
+---
+
+## 5. `robots.txt` (place at `/public/robots.txt`)
+
+```
+User-agent: *
+Allow: /
+
+Sitemap: https://gokulk.vercel.app/sitemap.xml
+```
+
+---
+
+## 6. `sitemap.xml` (place at `/public/sitemap.xml`)
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://gokulk.vercel.app</loc>
+    <lastmod>2026-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://gokulk.vercel.app/projects/nextstop-bustracker</loc>
+    <lastmod>2026-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gokulk.vercel.app/projects/ai-resume-analyzer</loc>
+    <lastmod>2026-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gokulk.vercel.app/projects/securepower</loc>
+    <lastmod>2026-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
+```
+
+---
+
+## 7. Next.js Dynamic Sitemap (`app/sitemap.ts`)
+
+If using App Router, replace the static XML with this:
+
+```ts
+import { MetadataRoute } from "next";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  return [
+    {
+      url: "https://gokulk.vercel.app",
+      lastModified: new Date("2026-04-08"),
+      changeFrequency: "monthly",
+      priority: 1,
+    },
+    {
+      url: "https://gokulk.vercel.app/projects/nextstop-bustracker",
+      lastModified: new Date("2026-04-08"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: "https://gokulk.vercel.app/projects/ai-resume-analyzer",
+      lastModified: new Date("2026-04-08"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: "https://gokulk.vercel.app/projects/securepower",
+      lastModified: new Date("2026-04-08"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+  ];
+}
+```
+
+---
+
+## IMPLEMENTATION CHECKLIST
+
+| # | Task | Status |
+|---|------|--------|
+| 1 | Add `metadata` export to `app/layout.tsx` | ☐ |
+| 2 | Create `app/components/JsonLd.tsx` and import in layout | ☐ |
+| 3 | Update hero section to use single `<h1>` with "Gokul K" | ☐ |
+| 4 | Add proper `aria-labelledby` on all sections | ☐ |
+| 5 | Add `alt` text to all `<img>` tags | ☐ |
+| 6 | Create `public/robots.txt` | ☐ |
+| 7 | Create `app/sitemap.ts` or `public/sitemap.xml` | ☐ |
+| 8 | Create a 1200×630px OG image at `public/og-image.png` | ☐ |
+| 9 | Submit sitemap to Google Search Console | ☐ |
+| 10 | Verify with Google Rich Results Test after deploy | ☐ |

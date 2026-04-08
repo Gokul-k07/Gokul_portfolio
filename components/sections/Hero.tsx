@@ -13,6 +13,7 @@ export function Hero() {
   return (
     <section
       id="hero"
+      aria-labelledby="hero-heading"
       className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden px-6 pb-20 pt-28 md:pt-32"
     >
       <div className="pointer-events-none absolute inset-0 hero-gradient-mesh" aria-hidden />
@@ -21,10 +22,13 @@ export function Hero() {
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
         <div className="order-2 flex w-full flex-1 flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
           <p className="font-display mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-[var(--accent-cyan)] md:text-sm animate-load delay-0">
-            {profile.name} | {profile.location}
+            {profile.name} &mdash; {profile.location}
           </p>
-          <h1 className="font-display text-4xl font-bold leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl xl:text-7xl animate-load delay-1">
-            Full-stack engineer for teams shipping product-grade software
+          <h1
+            id="hero-heading"
+            className="font-display text-4xl font-bold leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl xl:text-7xl animate-load delay-1"
+          >
+            {profile.name} &mdash; Full Stack Developer &amp; AI Engineer
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-base text-muted md:text-lg lg:mx-0 animate-load delay-2">
             I build production-ready web apps, backend systems, and AI-enabled experiences that are fast,

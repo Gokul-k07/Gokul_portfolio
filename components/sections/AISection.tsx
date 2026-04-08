@@ -46,7 +46,7 @@ export function AISection() {
   });
 
   return (
-    <section id="ai" className="relative px-6 py-24 md:py-32">
+    <section id="ai" aria-labelledby="ai-heading" className="relative px-6 py-24 md:py-32">
       <div className="mx-auto max-w-4xl">
         <motion.div
           variants={sectionVariants}
@@ -89,6 +89,7 @@ export function AISection() {
                     AI assistant
                   </motion.p>
                   <motion.h2
+                    id="ai-heading"
                     variants={item}
                     className="font-display mt-3 text-3xl font-bold tracking-tight text-foreground md:text-4xl"
                   >

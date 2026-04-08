@@ -39,55 +39,65 @@ const siteUrl = getSiteUrl();
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Gokul — Full Stack Developer & AI Enthusiast | Tamil Nadu, India",
-    template: "%s | Gokul",
+    default: "Gokul K — Full Stack Developer & AI Engineer | Tamil Nadu, India",
+    template: "%s | Gokul K",
   },
   description:
-    "Portfolio of Gokul: Full Stack Developer and AI enthusiast in Tamil Nadu, India. BusTracker (NEXTSTOP), AI Resume tools, SecurePower Android security, React, TypeScript, Kotlin, and Firebase.",
+    "Gokul K is a Full Stack Web Developer and AI Engineer based in Tamil Nadu, India. Portfolio of Gokul K: NEXTSTOP BusTracker, AI Resume Analyzer, SecurePower Android security app. React, Next.js, TypeScript, Kotlin, Supabase, Firebase.",
   keywords: [
     "Gokul",
-    "Full Stack Developer",
-    "AI",
-    "Tamil Nadu",
-    "React",
-    "TypeScript",
-    "Next.js",
-    "Kotlin",
-    "Firebase",
-    "Portfolio",
+    "Gokulk",
+    "Gokul K",
+    "Gokul portfolio",
+    "Gokul K web developer",
+    "Gokul K full stack developer",
+    "Gokul K AI engineer",
+    "Gokul Tamil Nadu developer",
+    "gokulk.vercel.app",
+    "Full Stack Developer Tamil Nadu",
+    "React developer India",
+    "Next.js developer portfolio",
+    "AI engineer portfolio India",
   ],
-  authors: [{ name: "Gokul" }],
-  creator: "Gokul",
+  authors: [{ name: "Gokul K", url: siteUrl }],
+  creator: "Gokul K",
+  publisher: "Gokul K",
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true },
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   alternates: {
-    canonical: "/",
+    canonical: siteUrl,
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "/",
-    siteName: "Gokul — Portfolio",
-    title: "Gokul — Full Stack Developer & AI Enthusiast",
+    url: siteUrl,
+    siteName: "Gokul K — Portfolio",
+    title: "Gokul K — Full Stack Developer & AI Engineer",
     description:
-      "End-to-end web apps, AI features, and Android security projects. Based in Tamil Nadu, India.",
+      "Gokul K builds production-ready web apps, AI-powered experiences, and Android security projects. Based in Tamil Nadu, India.",
     images: [
       {
         url: "/gokul-portrait.png",
         width: 1200,
         height: 630,
-        alt: "Gokul — Full Stack Developer",
+        alt: "Gokul K — Full Stack Developer and AI Engineer, Tamil Nadu India",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gokul — Full Stack Developer & AI Enthusiast",
+    title: "Gokul K — Full Stack Developer & AI Engineer",
     description:
-      "Portfolio: NEXTSTOP BusTracker, AI Resume Maker, SecurePower. React, TypeScript, Kotlin, Firebase.",
+      "Portfolio of Gokul K: NEXTSTOP BusTracker, AI Resume Maker, SecurePower. React, TypeScript, Kotlin, Firebase. Tamil Nadu, India.",
     images: ["/gokul-portrait.png"],
   },
   category: "technology",
@@ -110,6 +120,44 @@ export default function RootLayout({
         <SiteHeader />
         <InteractiveCursor />
         {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Gokul K",
+              alternateName: ["Gokul", "Gokulk"],
+              url: "https://gokulk.vercel.app",
+              image: "https://gokulk.vercel.app/gokul-portrait.png",
+              jobTitle: "Full Stack Developer",
+              description:
+                "Gokul K is a Full Stack Web Developer and AI Engineer based in Tamil Nadu, India, specializing in React, Next.js, Supabase, Firebase, Kotlin, and AI-powered web applications.",
+              address: {
+                "@type": "PostalAddress",
+                addressRegion: "Tamil Nadu",
+                addressCountry: "IN",
+              },
+              email: "gokulk24cb@psnacet.edu.in",
+              knowsAbout: [
+                "React",
+                "Next.js",
+                "Full Stack Development",
+                "Artificial Intelligence",
+                "Supabase",
+                "Firebase",
+                "Kotlin",
+                "Android Development",
+                "TypeScript",
+                "Web Development",
+              ],
+              sameAs: [
+                "https://github.com/Gokul-k07",
+                "https://www.linkedin.com/in/gokul-k-23334b329/",
+              ],
+            }),
+          }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `

@@ -30,7 +30,7 @@ export function Intro() {
   }, []);
 
   return (
-    <section id="intro" className="relative px-6 py-20 md:py-28">
+    <section id="intro" aria-labelledby="intro-heading" className="relative px-6 py-20 md:py-28">
       <div className="mx-auto max-w-4xl flex flex-col gap-10 md:flex-row md:items-start md:gap-16">
         {/* 3D Robot Spline Embed */}
         <div
@@ -41,7 +41,7 @@ export function Intro() {
         </div>
         {/* Intro Text */}
         <div className="flex-1">
-          <h2 className="font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl animate-load delay-1">
+          <h2 id="intro-heading" className="font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl animate-load delay-1">
             Hi, I&apos;m {profile.name} &mdash; {profile.role}
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-muted md:text-xl animate-load delay-2">

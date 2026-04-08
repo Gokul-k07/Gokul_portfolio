@@ -49,11 +49,10 @@ export function SiteHeader() {
                 key={l.href}
                 href={l.href}
                 scroll={true}
-                className={`nav-link relative shrink-0 rounded-full px-3 py-1.5 text-xs font-medium transition-all sm:text-sm sm:px-4 sm:py-2 ${
-                  active
+                className={`nav-link relative shrink-0 rounded-full px-3 py-1.5 text-xs font-medium transition-all sm:text-sm sm:px-4 sm:py-2 ${active
                     ? "bg-[var(--accent-cyan)]/10 text-[var(--accent-cyan)] border border-[var(--accent-cyan)]/30"
                     : "text-muted hover:text-foreground hover:bg-white/5 hover:border border-white/10"
-                } border border-transparent`}
+                  } border border-transparent`}
               >
                 {l.label}
               </Link>
@@ -66,7 +65,7 @@ export function SiteHeader() {
             target="_blank"
             rel="noopener noreferrer"
             className={iconBtn}
-            aria-label="GitHub profile"
+            aria-label="Gokul K on GitHub"
           >
             <IconGithub className="h-4 w-4" />
           </a>
@@ -75,7 +74,7 @@ export function SiteHeader() {
             target="_blank"
             rel="noopener noreferrer"
             className={iconBtn}
-            aria-label="LinkedIn profile"
+            aria-label="Gokul K on LinkedIn"
           >
             <IconLinkedIn className="h-4 w-4" />
           </a>
