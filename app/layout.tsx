@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Sans, Syne } from "next/font/google";
 import { InteractiveCursor } from "@/components/InteractiveCursor";
-import { SiteHeader } from "@/components/SiteHeader";
+import { NavBar } from "@/components/NavBar";
+import { PageTransition } from "@/components/PageTransition";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { getSiteUrl } from "@/lib/site";
 import "./globals.css";
@@ -119,10 +120,12 @@ export default function RootLayout({
     <Html>
       <ThemeProvider>
         <body className="flex min-h-full flex-col bg-background font-sans text-foreground" suppressHydrationWarning>
-          <SiteHeader />
+          <NavBar />
           <InteractiveCursor />
-          {children}
-        <script
+          <PageTransition>
+            {children}
+          </PageTransition>
+          <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({

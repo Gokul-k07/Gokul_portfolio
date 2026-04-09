@@ -12,7 +12,7 @@ export function FlipCard() {
     <motion.div
       initial={false}
       animate={{ rotateY: isFlipped ? 180 : 0 }}
-      transition={{ duration: 0.6, type: "tween" }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       style={{
         transformStyle: "preserve-3d",
         perspective: 1200,
@@ -26,7 +26,7 @@ export function FlipCard() {
         style={{
           backfaceVisibility: "hidden",
         }}
-        className="absolute inset-0 w-full h-full border border-white/15 bg-[var(--bg-elevated)] shadow-[0_24px_80px_-20px_rgba(34,211,238,0.25)] ring-1 ring-cyan-400/25 overflow-hidden rounded-3xl"
+        className="absolute inset-0 w-full h-full border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-slate-900 shadow-lg dark:shadow-lg overflow-hidden rounded-3xl transition-all duration-300"
       >
         <Image
           src={profile.avatarSrc}
@@ -37,7 +37,7 @@ export function FlipCard() {
           className="object-cover object-[center_18%]"
         />
         <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--bg-void)]/40 via-transparent to-transparent"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent dark:from-black/40"
           aria-hidden
         />
       </div>
@@ -48,7 +48,7 @@ export function FlipCard() {
           backfaceVisibility: "hidden",
           transform: "rotateY(180deg)",
         }}
-        className="absolute inset-0 w-full h-full border border-white/15 bg-[var(--bg-elevated)] shadow-[0_24px_80px_-20px_rgba(34,211,238,0.25)] ring-1 ring-cyan-400/25 overflow-hidden rounded-3xl"
+        className="absolute inset-0 w-full h-full border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-slate-900 shadow-lg dark:shadow-lg overflow-hidden rounded-3xl transition-all duration-300"
       >
         <Image
           src="/flip-image.png"
@@ -59,7 +59,7 @@ export function FlipCard() {
           className="object-cover"
         />
         <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--bg-void)]/40 via-transparent to-transparent"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent dark:from-black/40"
           aria-hidden
         />
       </div>
