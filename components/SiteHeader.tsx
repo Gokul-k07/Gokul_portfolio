@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
 import { profile } from "@/data/profile";
 import { IconGithub, IconLinkedIn } from "@/components/icons/SocialIcons";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 
 const links = [
@@ -78,6 +79,7 @@ export function SiteHeader() {
           >
             <IconLinkedIn className="h-4 w-4" />
           </a>
+          <ThemeToggle />
           <Link
             href="/#contact"
             scroll={true}

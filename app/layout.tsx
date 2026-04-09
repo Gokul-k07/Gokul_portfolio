@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { DM_Sans, Syne } from "next/font/google";
 import { InteractiveCursor } from "@/components/InteractiveCursor";
 import { SiteHeader } from "@/components/SiteHeader";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { getSiteUrl } from "@/lib/site";
 import "./globals.css";
 
@@ -26,7 +27,7 @@ function Html({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${syne.variable} ${dmSans.variable} dark h-full antialiased`}
+      className={`${syne.variable} ${dmSans.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       {children}
@@ -116,10 +117,11 @@ export default function RootLayout({
 }>) {
   return (
     <Html>
-      <body className="flex min-h-full flex-col bg-background font-sans text-foreground" suppressHydrationWarning>
-        <SiteHeader />
-        <InteractiveCursor />
-        {children}
+      <ThemeProvider>
+        <body className="flex min-h-full flex-col bg-background font-sans text-foreground" suppressHydrationWarning>
+          <SiteHeader />
+          <InteractiveCursor />
+          {children}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -230,6 +232,7 @@ export default function RootLayout({
           }}
         />
       </body>
+      </ThemeProvider>
     </Html>
   );
 }

@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  /* Dark Theme (Default) */
   --bg-void: #050508;
   --bg-elevated: #0a0a0f;
   --bg-card: rgba(18, 18, 28, 0.65);
@@ -13,6 +14,26 @@
   --glow-violet: rgba(167, 139, 250, 0.4);
   --border-subtle: rgba(255, 255, 255, 0.08);
   --ring-glow: 0 0 40px -8px var(--glow-cyan);
+}
+
+:root:not(.dark) {
+  /* Light Theme */
+  --bg-void: #ffffff;
+  --bg-elevated: #f8fafc;
+  --bg-card: rgba(248, 250, 252, 0.85);
+  --foreground: #0f172a;
+  --foreground-muted: #475569;
+  --accent-cyan: #2563eb;
+  --accent-violet: #7c3aed;
+  --accent-magenta: #ec4899;
+  --glow-cyan: rgba(37, 99, 235, 0.25);
+  --glow-violet: rgba(124, 58, 237, 0.2);
+  --border-subtle: rgba(15, 23, 42, 0.08);
+  --ring-glow: 0 0 40px -8px var(--glow-cyan);
+}
+
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @theme inline {
@@ -51,6 +72,16 @@ body {
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06), 0 12px 40px -28px rgba(0, 0, 0, 0.65);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+:root:not(.dark) .header-glass {
+  background: linear-gradient(
+    180deg,
+    rgba(248, 250, 252, 0.85) 0%,
+    rgba(248, 250, 252, 0.65) 100%
+  );
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.06), 0 12px 40px -28px rgba(0, 0, 0, 0.1);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -92,6 +123,14 @@ section[id] {
     radial-gradient(ellipse 70% 50% at 80% 60%, rgba(167, 139, 250, 0.18), transparent 45%),
     radial-gradient(ellipse 50% 40% at 50% 90%, rgba(232, 121, 249, 0.08), transparent 40%);
   animation: gradient-shift 14s ease-in-out infinite;
+  transition: background 0.3s ease;
+}
+
+:root:not(.dark) .hero-gradient-mesh {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(37, 99, 235, 0.08), transparent 50%),
+    radial-gradient(ellipse 70% 50% at 80% 60%, rgba(124, 58, 237, 0.06), transparent 45%),
+    radial-gradient(ellipse 50% 40% at 50% 90%, rgba(236, 72, 153, 0.04), transparent 40%);
 }
 
 /* Subtle grid overlay */
@@ -101,6 +140,13 @@ section[id] {
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 70%);
+  transition: background-image 0.3s ease;
+}
+
+:root:not(.dark) .hero-grid {
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
 }
 
 /* Glass card */
@@ -110,18 +156,32 @@ section[id] {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-subtle);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .glass:hover {
   border-color: rgba(255, 255, 255, 0.12);
 }
 
+:root:not(.dark) .glass:hover {
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
 /* Primary CTA glow */
 .btn-glow {
   box-shadow: 0 0 24px -4px var(--glow-cyan), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: box-shadow 0.3s ease;
 }
 
 .btn-glow:hover {
+  box-shadow: 0 0 36px -2px var(--glow-cyan), 0 0 20px -4px var(--glow-violet);
+}
+
+:root:not(.dark) .btn-glow {
+  box-shadow: 0 0 24px -4px var(--glow-cyan), inset 0 1px 0 rgba(15, 23, 42, 0.05);
+}
+
+:root:not(.dark) .btn-glow:hover {
   box-shadow: 0 0 36px -2px var(--glow-cyan), 0 0 20px -4px var(--glow-violet);
 }
 
@@ -157,6 +217,18 @@ section[id] {
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 0 0 1px rgba(34, 211, 238, 0.12),
     0 24px 80px -32px rgba(34, 211, 238, 0.25);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+:root:not(.dark) .ai-panel-frame {
+  background:
+    linear-gradient(135deg, rgba(37, 99, 235, 0.04) 0%, transparent 42%),
+    linear-gradient(315deg, rgba(124, 58, 237, 0.04) 0%, transparent 45%),
+    rgba(248, 250, 252, 0.92);
+  box-shadow:
+    inset 0 1px 0 rgba(15, 23, 42, 0.08),
+    0 0 0 1px rgba(37, 99, 235, 0.1),
+    0 24px 80px -32px rgba(37, 99, 235, 0.1);
 }
 
 .ai-scanlines {
@@ -173,6 +245,17 @@ section[id] {
   );
   opacity: 0.35;
   mix-blend-mode: overlay;
+  transition: background 0.3s ease;
+}
+
+:root:not(.dark) .ai-scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(15, 23, 42, 0.08) 2px,
+    rgba(15, 23, 42, 0.08) 3px
+  );
 }
 
 .ai-corner {
@@ -181,6 +264,11 @@ section[id] {
   height: 18px;
   border-color: rgba(34, 211, 238, 0.45);
   pointer-events: none;
+  transition: border-color 0.3s ease;
+}
+
+:root:not(.dark) .ai-corner {
+  border-color: rgba(37, 99, 235, 0.4);
 }
 
 .ai-corner-tl {
