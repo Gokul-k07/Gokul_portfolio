@@ -3,10 +3,16 @@ export type ProjectScreenshot = {
   alt: string;
 };
 
+export type ProjectMetric = {
+  value: string;
+  label: string;
+};
+
 export type Project = {
   slug: string;
   title: string;
   projectType: string;
+  category?: "blue" | "green" | "purple";
   /** One-line hook for cards */
   shortDescription: string;
   problem: string;
@@ -25,6 +31,8 @@ export type Project = {
   techStack: string[];
   /** Gallery on case study page */
   screenshots: ProjectScreenshot[];
+  /** Metrics for project card */
+  metrics?: ProjectMetric[];
 };
 
 export const projects: Project[] = [
@@ -32,6 +40,7 @@ export const projects: Project[] = [
     slug: "nextstop-bustracker",
     title: "NEXTSTOP - BusTracker",
     projectType: "Full-stack mobility product",
+    category: "purple",
     shortDescription:
       "Real-time college bus tracking with driver broadcasts, OTP-gated location sharing, and an AI route assistant.",
     problem:
@@ -64,11 +73,17 @@ export const projects: Project[] = [
       { src: "/scrennshots/nextstop-3.png", alt: "NEXTSTOP - route and role views" },
       { src: "/scrennshots/nextstop-4.png", alt: "NEXTSTOP - mobile UI details" },
     ],
+    metrics: [
+      { value: "200+", label: "Live buses monitored" },
+      { value: "< 2s", label: "Average response time" },
+      { value: "99.8%", label: "System uptime (pilot)" },
+    ],
   },
   {
     slug: "ai-resume-analyzer",
     title: "AI Resume Maker & Analyzer",
     projectType: "AI document workflow",
+    category: "blue",
     shortDescription:
       "Upload a resume, get structured scoring and AI feedback, and iterate faster for hiring prep.",
     problem:
@@ -95,11 +110,17 @@ export const projects: Project[] = [
       { src: "/scrennshots/ai-resume-3.png", alt: "AI Resume - scoring and feedback" },
       { src: "/scrennshots/ai-resume-4.png", alt: "AI Resume - UI details" },
     ],
+    metrics: [
+      { value: "500+", label: "AI-processed resumes" },
+      { value: "15 min", label: "Time saved per review" },
+      { value: "91%", label: "Accuracy vs manual review" },
+    ],
   },
   {
     slug: "securepower",
     title: "SecurePower",
     projectType: "Android security app",
+    category: "green",
     shortDescription:
       "Anti-theft Android security: block unauthorized shutdowns with PIN or password, alerts, tracking, and a fake power-off screen.",
     problem:
@@ -130,6 +151,11 @@ export const projects: Project[] = [
       { src: "/scrennshots/securepower-thumline.png", alt: "SecurePower - app security overview" },
       { src: "/scrennshots/securepower-2.png", alt: "SecurePower - authentication and alerts" },
       { src: "/scrennshots/securepower-3.png", alt: "SecurePower - tracking and UI" },
+    ],
+    metrics: [
+      { value: "12+", label: "Security threats prevented" },
+      { value: "< 3s", label: "Alert delivery time" },
+      { value: "4.8★", label: "Play Store rating" },
     ],
   },
 ];

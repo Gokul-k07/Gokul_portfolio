@@ -8,6 +8,7 @@ import type { Project } from "@/data/projects";
 import { featuredProjects } from "@/data/projects";
 import { getScrollSectionVariants } from "@/lib/sectionVariants";
 import { IconExternal } from "@/components/icons/SocialIcons";
+import { MetricsDisplay } from "@/components/MetricsDisplay";
 
 function ProjectActions({ project }: { project: Project }) {
   return (
@@ -46,11 +47,25 @@ function ProjectActions({ project }: { project: Project }) {
 }
 
 function ProjectCard({ project, index, imagePriority = false, stackPosition = 0, isTopCard = false }: { project: Project; index: number; imagePriority?: boolean; stackPosition?: number; isTopCard?: boolean }) {
+  const [isHovered, setIsHovered] = useState(false);
+  
   // Apply moderate blur to stacked projects for better visual separation
   const blurAmount = isTopCard ? 0 : 100; // 30px blur for stacked cards, 0 for top card
+  
+  // Category-based glow colors
+  const glowShadows = {
+    blue: "shadow-[0_0_30px_rgba(59,130,246,0.35)] hover:shadow-[0_0_40px_rgba(59,130,246,0.45)]",
+    green: "shadow-[0_0_30px_rgba(34,197,94,0.35)] hover:shadow-[0_0_40px_rgba(34,197,94,0.45)]",
+    purple: "shadow-[0_0_30px_rgba(168,85,247,0.35)] hover:shadow-[0_0_40px_rgba(168,85,247,0.45)]",
+  };
+  
   const glassClasses = isTopCard
-    ? "glass group overflow-hidden rounded-[2rem] border border-white/12 shadow-[0_24px_80px_-32px_rgba(0,0,0,0.72),0_0_20px_rgba(34,211,238,0.15)]"
-    : "glass group overflow-hidden rounded-[2rem] border border-white/6 shadow-[0_16px_64px_-24px_rgba(0,0,0,0.48)]";
+    ? `glass group overflow-hidden rounded-[2rem] border border-white/12 shadow-[0_24px_80px_-32px_rgba(0,0,0,0.72),0_0_20px_rgba(34,211,238,0.15)] transition-all duration-500 ${
+        project.category && isHovered ? glowShadows[project.category] : ""
+      }`
+    : `glass group overflow-hidden rounded-[2rem] border border-white/6 shadow-[0_16px_64px_-24px_rgba(0,0,0,0.48)] transition-all duration-500 ${
+        project.category && isHovered ? glowShadows[project.category] : ""
+      }`;
 
   const backdropBlur = `blur(${blurAmount}px)`;
   const opacity = isTopCard ? 1 : 0.9;
@@ -63,6 +78,8 @@ function ProjectCard({ project, index, imagePriority = false, stackPosition = 0,
         WebkitBackdropFilter: backdropBlur,
         opacity,
       }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <div className="grid min-h-[22rem] md:min-h-[calc(100dvh-8.5rem)] lg:grid-cols-[minmax(0,1.12fr)_minmax(20rem,0.88fr)]">
         <div className="relative min-h-[18rem] overflow-hidden bg-[var(--bg-elevated)] lg:min-h-full">
@@ -106,6 +123,8 @@ function ProjectCard({ project, index, imagePriority = false, stackPosition = 0,
               </li>
             ))}
           </ul>
+
+          {project.metrics && <MetricsDisplay metrics={project.metrics} category={project.category} />}
 
           <ul className="mt-6 flex flex-wrap gap-2">
             {project.tags.map((tag) => (

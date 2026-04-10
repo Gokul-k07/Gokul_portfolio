@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useTypingEffect } from "@/hooks/useTypingEffect";
 import { getScrollSectionVariants, getStaggerContainer, getStaggerItem } from "@/lib/sectionVariants";
+import { ProcessSection } from "@/components/sections/ProcessSection";
 import GokulGPT from "@/components/GokulGPT";
 
 const TERMINAL_LINES = [
@@ -135,16 +136,12 @@ export function AISection() {
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-6 rounded-2xl border border-dashed border-[var(--accent-cyan)]/35 bg-[var(--accent-cyan)]/5 p-5 text-sm text-muted"
+                  className="mt-6"
                 >
-                  <p className="font-display text-base font-semibold text-foreground">Workflow preview</p>
-                  <p className="mt-2">
-                    This is a static product walkthrough, not a live endpoint. Hook an API key and streaming
-                    backend to turn it into a real assistant surface.
-                  </p>
+                  <ProcessSection />
                   <button
                     type="button"
-                    className="mt-4 rounded-lg border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-foreground transition hover:border-[var(--accent-cyan)]/40"
+                    className="mt-6 rounded-lg border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-foreground transition hover:border-[var(--accent-cyan)]/40"
                     onClick={() => setDemoOpen(false)}
                   >
                     Close

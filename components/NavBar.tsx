@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll } from 'framer-motion';
 import Link from 'next/link';
 import { MagneticButton } from '@/components/MagneticButton';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 const sections = ['hero', 'intro', 'work', 'ai', 'contact'];
 
@@ -93,8 +94,8 @@ export function NavBar() {
           })}
         </div>
 
-        {/* Right side: Availability badge + CTA */}
-        <div className="flex items-center gap-4">
+        {/* Right side: Availability badge + Theme Toggle + CTA */}
+        <div className="flex items-center gap-3">
           {/* Pulsing availability badge */}
           <div className="hidden sm:flex items-center gap-2 text-xs font-medium bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-600 px-3 py-1.5 rounded-full">
             <span className="relative flex h-2 w-2">
@@ -103,6 +104,7 @@ export function NavBar() {
             </span>
             Available for work
           </div>
+          <ThemeToggle />
           <MagneticButton href="#contact" variant="primary">
             Let's talk
           </MagneticButton>

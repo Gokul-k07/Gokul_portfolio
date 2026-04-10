@@ -1,14 +1,26 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { FlipCard } from "@/components/FlipCard";
 import { profile } from "@/data/profile";
 
 const focusAreas = ["React + Next.js", "AI product workflows", "Supabase + Firebase", "Kotlin + Android"];
+const roles = ["Full Stack Developer", "AI Engineer", "Product Builder", "Problem Solver"];
 
 export function Hero() {
   const reduced = useReducedMotion();
+  const [roleIdx, setRoleIdx] = useState(0);
+
+  // Cycle through roles every 3 seconds
+  useEffect(() => {
+    if (reduced) return;
+    const interval = setInterval(() => {
+      setRoleIdx((i) => (i + 1) % roles.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [reduced]);
 
   return (
     <section
@@ -28,7 +40,21 @@ export function Hero() {
             id="hero-heading"
             className="font-display text-4xl font-bold leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl xl:text-7xl animate-load delay-1"
           >
-            {profile.name} &mdash; Full Stack Developer &amp; AI Engineer
+            {profile.name} &mdash;
+            <span className="ml-3">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={roleIdx}
+                  initial={{ opacity: 0, y: 4, filter: "blur(8px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, y: -4, filter: "blur(8px)" }}
+                  transition={{ duration: 0.5 }}
+                  className="inline-block"
+                >
+                  {roles[roleIdx]}
+                </motion.span>
+              </AnimatePresence>
+            </span>
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-base text-muted md:text-lg lg:mx-0 animate-load delay-2">
             I build production-ready web apps, backend systems, and AI-enabled experiences that are fast,

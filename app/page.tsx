@@ -1,4 +1,5 @@
 import { AISection } from "@/components/sections/AISection";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { Hero } from "@/components/sections/Hero";
 import { Intro } from "@/components/sections/Intro";
@@ -12,6 +13,7 @@ export default function Home() {
         <Hero />
         <Intro />
         <TechStack />
+        <TestimonialsSection />
         <FeaturedProjects />
         <AISection />
         <SiteFooter />
