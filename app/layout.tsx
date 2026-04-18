@@ -118,6 +118,27 @@ export default function RootLayout({
 }>) {
   return (
     <Html>
+      <head>
+        {/* Theme initialization script to prevent hydration mismatch */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const theme = localStorage.getItem('gokul-theme');
+                  if (theme === 'light') {
+                    document.documentElement.classList.remove('dark');
+                  } else {
+                    document.documentElement.classList.add('dark');
+                  }
+                } catch (e) {
+                  // Silently fail if localStorage is not available
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
       <ThemeProvider>
         <body className="flex min-h-full flex-col bg-background font-sans text-foreground" suppressHydrationWarning>
           <NavBar />

@@ -42,6 +42,8 @@ export function useTheme(): ThemeContextType {
 
   // Listen for storage changes across tabs
   useEffect(() => {
+    if (!mounted) return;
+    
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === STORAGE_KEY && e.newValue) {
         const newTheme = e.newValue as Theme;
@@ -52,7 +54,7 @@ export function useTheme(): ThemeContextType {
 
     window.addEventListener('storage', handleStorageChange);
     return () => window.removeEventListener('storage', handleStorageChange);
-  }, []);
+  }, [mounted]);
 
   const setTheme = useCallback((newTheme: Theme) => {
     setThemeState(newTheme);
@@ -64,7 +66,7 @@ export function useTheme(): ThemeContextType {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   }, [theme, setTheme]);
 
-  return { theme: mounted ? theme : 'dark', toggle, setTheme };
+  return { theme, toggle, setTheme };
 }
 
 /**

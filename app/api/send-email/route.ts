@@ -1,4 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
+import emailjs from "@emailjs/nodejs";
+
+// Initialize EmailJS with your configuration
+emailjs.init({
+  publicKey: process.env.EMAILJS_PUBLIC_KEY || "",
+});
 
 export async function POST(request: NextRequest) {
   try {
@@ -21,48 +27,41 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // TODO: Implement email sending logic
-    // Options:
-    // 1. Use Nodemailer with SMTP
-    // 2. Use SendGrid API
-    // 3. Use AWS SES
-    // 4. Use Resend (recommended for Next.js)
-    
-    // For now, log the message and return success
-    console.log("Contact form submission:", {
-      name,
-      email,
-      projectType,
-      message,
-      timestamp: new Date().toISOString(),
-    });
+    // Prepare template parameters for EmailJS
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      project_type: projectType,
+      message: message,
+      to_email: process.env.NEXT_PUBLIC_CONTACT_EMAIL,
+    };
 
-    // Example: Send email using Resend (requires API key)
-    // const response = await resend.emails.send({
-    //   from: "contact@yourdomian.com",
-    //   to: "your-email@gmail.com",
-    //   replyTo: email,
-    //   subject: `New Contact Form Submission from ${name}`,
-    //   html: `
-    //     <h2>New Contact Form Submission</h2>
-    //     <p><strong>Name:</strong> ${name}</p>
-    //     <p><strong>Email:</strong> ${email}</p>
-    //     <p><strong>Project Type:</strong> ${projectType}</p>
-    //     <p><strong>Message:</strong> ${message}</p>
-    //   `,
-    // });
-
-    return NextResponse.json(
-      { 
-        message: "Form submitted successfully. We'll get back to you soon!",
-        success: true 
-      },
-      { status: 200 }
+    // Send email using EmailJS
+    const response = await emailjs.send(
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
+      templateParams
     );
+
+    if (response.status === 200) {
+      console.log("Email sent successfully:", {
+        name,
+        email,
+        projectType,
+        timestamp: new Date().toISOString(),
+      });
+
+      return NextResponse.json(
+        { message: "Email sent successfully!" },
+        { status: 200 }
+      );
+    } else {
+      throw new Error("Email sending failed");
+    }
   } catch (error) {
-    console.error("Error processing contact form:", error);
+    console.error("Error sending email:", error);
     return NextResponse.json(
-      { error: "Failed to process request" },
+      { error: "Failed to send email. Please try again later." },
       { status: 500 }
     );
   }
