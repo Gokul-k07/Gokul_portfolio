@@ -3,7 +3,7 @@
 ###
 
 <div align="center">
-  <img style="display: block;-webkit-user-select: none;margin: auto;cursor: zoom-in;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;" src="https://user-images.githubusercontent.com/74038190/235224431-e8c8c12e-6826-47f1-89fb-2ddad83b3abf.gif" alt="hero" />
+ <img style="display: block;-webkit-user-select: none;margin: auto;cursor: zoom-in;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;" src="https://user-images.githubusercontent.com/74038190/240304586-d48893bd-0757-481c-8d7e-ba3e163feae7.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzU0OTU5MDEsIm5iZiI6MTc3NTQ5NTYwMSwicGF0aCI6Ii83NDAzODE5MC8yNDAzMDQ1ODYtZDQ4ODkzYmQtMDc1Ny00ODFjLThkN2UtYmEzZTE2M2ZlYWU3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjA0MDYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwNDA2VDE3MTMyMVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPThiN2NlYmY1YTU2YzNmOTY2OTA2ZTlmZmE5N2QzZGQ5YzhjMjc4ODQyY2MzMTRhMWZmYmI3NTgxOTUwMGNkZjAmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.9C-wC1FADHopzCT5J-I0EgG_eitALJ-31CZVFuouS7Y" width=1020 height="234">
 </div>
 
 ###
@@ -91,33 +91,20 @@
 ###
 <h1 align="center"></h1>
 
-<!-- Placed LeetCode card and image table side-by-side using flexbox so the LeetCode card stays visible. -->
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="https://user-images.githubusercontent.com/74038190/235224431-e8c8c12e-6826-47f1-89fb-2ddad83b3abf.gif" width="200px" />
+    </td>
+    <td align="center">
+      <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3czU5YXkzNTZycTdhMjE3a3plMTJ0NXEzcjE0ZGxvcmgxN2V0c28wcSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/HscDLzkO8EOTmgkhQP/giphy.gif" width="200px" />
+    </td>
+    <td align="center">
+      <img src="https://user-images.githubusercontent.com/74038190/219925470-37670a3b-c3e2-4af7-b468-673c6dd99d16.png" width="200px" />
+    </td>
+  </tr>
+</table>
 
-<div align="center">
-  <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:20px;max-width:960px;">
-    <!-- Left: LeetCode card -->
-    <div style="flex:0 1 560px;min-width:260px;">
-      <img alt="LeetCode Stats" src="https://leetcard.jacoblin.cool/Gokulk_07?theme=dark&font=Baloo%20Tammudu%202&ext=heatmap" style="width:100%;height:auto;display:block;border-radius:8px;" />
-    </div>
-
-    <!-- Right: image table (kept as-is but wrapped to align right of the LeetCode card) -->
-    <div style="flex:0 0 300px;min-width:200px;display:flex;align-items:flex-start;justify-content:center;">
-      <table>
-        <tr>
-          <td align="center">
-            <img src="https://user-images.githubusercontent.com/74038190/235224431-e8c8c12e-6826-47f1-89fb-2ddad83b3abf.gif" width="200px" />
-          </td>
-          <td align="center">
-            <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3czU5YXkzNTZycTdhMjE3a3plMTJ0NXEzcjE0ZGxvcmgxN2V0c28wcSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/HscDLzkO8EOTmgkhQP/giphy.gif" width="200px" />
-          </td>
-          <td align="center">
-            <img src="https://user-images.githubusercontent.com/74038190/219925470-37670a3b-c3e2-4af7-b468-673c6dd99d16.png" width="200px" />
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div>
-</div>
-
+![LeetCode Stats](https://leetcard.jacoblin.cool/Gokulk_07?theme=dark&font=Baloo%20Tammudu%202&ext=heatmap)
 
 
